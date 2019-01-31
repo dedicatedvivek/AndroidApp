@@ -175,19 +175,18 @@
 </head>
 
 <body>
-	<form method="POST" action="/doc_upload">
+	
 
 	<div class= "form-style-10">
 
 <h1>ADD A NEW APPLICANT<span>Fill in the details carefully</span></h1>
 
-<form action="/insert" method="post" name="appl" onsubmit="return validation()"> 
+<form action="/insertdoc" method="POST" name="docform"> 
 
 	{{ csrf_field() }}
 
 
 
-    
 
 
 <div class = "section"><span>1</span>User Details</div>
@@ -210,24 +209,52 @@
     		<option value="Doc4">Doc 4</option>
     	</select></label>
 
-                <input class="addfilebutton" type="file" accept="image/*" capture="camera">
+                <input class="addfilebutton" type="file" accept="image/*" capture="camera" name="document" onchange="readURL(this);">
 
-                
+<div > 
+<a href="#" id="anchor" download="C:\Users\Vivek Iyer\Desktop\web-crawler\img.jpeg">             
+<img id="blah" src="#"  />
+</a>
+</div>
 
 
-</button>
 
 		 	   	        
             <div class="col-md-12 text-center">
 
-                <br/>
+                <br>
 
-                <button class="subbutton">Submit</button>
+                <input type="submit" class="subbutton" value="submit"  />
 
             </div>
 
             </div>
 </form>
+
+
+<script type="text/javascript">
+	function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $('#blah')
+        .attr('src', e.target.result)
+        .width(150)
+        .height(200);
+
+      $('#anchor')
+      .attr('href', e.target.result)
+        .width(150)
+        .height(200);
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+
+}
+
+
+
+</script>
 
 
 
